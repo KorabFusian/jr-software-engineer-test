@@ -2,10 +2,8 @@ package com.adobe.bookstore;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "book_stock")
@@ -45,4 +43,7 @@ public class BookStock {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+    @OneToMany(mappedBy = "book")
+    Set<OrderBooks> orders;
 }
