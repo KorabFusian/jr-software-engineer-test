@@ -29,8 +29,10 @@ public class OrderResource {
     @GetMapping
     public ResponseEntity<List<Order>> getOrders() {
         // Assuming we only want the orders here, so only IDs.
-        // I couldn't find a way to fit book information into the orders table (since there can be many books per order),
+        // There is no way to fit book information into the orders table (since it's a many-to-many relationship),
         // which is why that information is stored separately in the order_books table.
+        // Possible improvement : adding a class that contains the relevant information from orders and order_books and
+        // relay that information here instead.
         List<Order> orders = orderRepository.findAll();
         return ResponseEntity.ok(orders);
     }
